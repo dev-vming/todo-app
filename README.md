@@ -17,3 +17,7 @@
 - 지속성 : 데이터를 지속적으로 저장하며, 웹 페이지 새로고침 후에도 할 일 목록을 유지하는 기능
 
 </br>
+
+## 동작 화면
+![image](https://github.com/user-attachments/assets/7557bbf8-2548-403c-8447-f3be3dcc0302)
+
