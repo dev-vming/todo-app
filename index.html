@@ -6,23 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TodoApp + 바닐라스크립트=>jQuery</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://knockoutjs.com/downloads/knockout-3.5.1.js"></script>
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
-    <div id="todo-app">
-      <input id="todo-input" type="text" placeholder="할일을 입력해주세요." />
-      <ul id="todo-list" data-filter="all"></ul>
-
-      <div>남은 할일 : <span id="num-remaining-todos">0</span></div>
-
-      <hr />
-      <div>
-        <button id="btn-show-all">전체 보기</button>
+    <div id="todo-app" class="todo-app">
+      <div id="num-remaining-todos">남은 할일: <span id="remaining-count">0</span></div>
+      <div class="filter-buttons">
+        <button id="btn-show-all" class="active">전체 보기</button>
         <button id="btn-show-active">해야할 일 보기</button>
         <button id="btn-show-completed">완료한 일 보기</button>
       </div>
-      <hr />
-      <div>
+      <input id="todo-input" data-bind="event:{keydown:할일추가}" type="text" placeholder="할일을 입력해주세요." />
+      <ul id="todo-list" data-filter="all"></ul>
+
+      <div class="action-buttons">
         <button id="btn-toggle-all">전체 완료 토글</button>
         <button id="btn-clear-completed">완료한 일 삭제</button>
       </div>
