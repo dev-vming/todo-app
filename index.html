@@ -11,20 +11,56 @@
   </head>
   <body>
     <div id="todo-app" class="todo-app">
-      <div id="num-remaining-todos">남은 할일: <span id="remaining-count">0</span></div>
-      <div class="filter-buttons">
-        <button id="btn-show-all" class="active">전체 보기</button>
-        <button id="btn-show-active">해야할 일 보기</button>
-        <button id="btn-show-completed">완료한 일 보기</button>
+      <div id="num-remaining-todos">
+        남은 할일:
+        <span id="remaining-count" data-bind="text:num_remaining_todos">0</span>
       </div>
-      <input id="todo-input" data-bind="event:{keydown:할일추가}" type="text" placeholder="할일을 입력해주세요." />
-      <ul id="todo-list" data-filter="all"></ul>
+      <div class="filter-buttons">
+        <button data-bind="click:전체보기, css:{active: activeButton() === 'ALL'}" class="active">전체 보기</button>
+        <button data-bind="click:해야할일보기, css:{active: activeButton() === 'ACTIVE'}">해야할 일 보기</button>
+        <button data-bind="click:완료한일보기, css:{active: activeButton() === 'COMPLETED'}">완료한 일 보기</button>
+      </div>
+      <input
+        id="todo-input"
+        data-bind="event:{keydown:할일추가}"
+        type="text"
+        placeholder="할일을 입력해주세요."
+      />
+      <ul id="todo-list" data-filter="all" data-bind="foreach:filteredTodos">
+        <li
+          class="todo"
+          data-bind="css:{completed, editing:$data===$parent.editingTodo()}"
+        >
+          <input
+            type="checkbox"
+            data-bind="attr:{checked:completed},click:$parent.할일완료토글.bind($parent)"
+          />
+          <span
+            data-bind="text:title, event:{dblclick:$parent.할일수정.bind($parent)}"
+          ></span>
+          <input
+            type="text"
+            class="todo-edit-input"
+            data-bind="{
+              textInput:$parent.editingTitle,
+              hasFocus:$data===$parent.editingTodo(),
+              event:{
+                keydown:$parent.할일제목수정.bind($parent),
+                blur:$parent.할일수정취소.bind($parent)
+              }
+            }"
+          />
+          <button class="del" data-bind="click:$parent.할일삭제.bind($parent)">
+            X
+          </button>
+        </li>
+      </ul>
 
       <div class="action-buttons">
-        <button id="btn-toggle-all">전체 완료 토글</button>
-        <button id="btn-clear-completed">완료한 일 삭제</button>
+        <button data-bind="click:전체완료토글">전체 완료 토글</button>
+        <button data-bind="click:완료된할일삭제">완료한 일 삭제</button>
       </div>
     </div>
-    <script src="./src/main.js"></script>
+    <script src="./src/main.js" type="module"></script>
   </body>
 </html>
