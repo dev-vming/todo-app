@@ -1,6 +1,7 @@
 # Todo App 제작을 통해 프론트엔드 프레임워크와 라이브러리 학습
 1. VanillaJS로 todo-app 제작
-2. jQuery로 todo-app 제작
+2. jQuery로 마이그레이션
+3. knockoutJs로 마이그레이션
 
 </br>
 
